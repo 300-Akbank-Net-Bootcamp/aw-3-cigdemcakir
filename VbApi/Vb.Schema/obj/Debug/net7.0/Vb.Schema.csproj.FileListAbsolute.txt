@@ -1,0 +1,15 @@
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/bin/Debug/net7.0/Vb.Schema.deps.json
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/bin/Debug/net7.0/Vb.Schema.dll
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/bin/Debug/net7.0/Vb.Schema.pdb
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/bin/Debug/net7.0/Vb.Base.dll
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/bin/Debug/net7.0/Vb.Base.pdb
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/obj/Debug/net7.0/Vb.Schema.csproj.AssemblyReference.cache
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/obj/Debug/net7.0/Vb.Schema.GeneratedMSBuildEditorConfig.editorconfig
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/obj/Debug/net7.0/Vb.Schema.AssemblyInfoInputs.cache
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/obj/Debug/net7.0/Vb.Schema.AssemblyInfo.cs
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/obj/Debug/net7.0/Vb.Schema.csproj.CoreCompileInputs.cache
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/obj/Debug/net7.0/Vb.Schema.csproj.CopyComplete
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/obj/Debug/net7.0/Vb.Schema.dll
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/obj/Debug/net7.0/refint/Vb.Schema.dll
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/obj/Debug/net7.0/Vb.Schema.pdb
+/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Schema/obj/Debug/net7.0/ref/Vb.Schema.dll

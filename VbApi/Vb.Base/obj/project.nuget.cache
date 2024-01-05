@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "X1NsciZMu4/oahJD8JQfHtJ6gncE+wOfJoYgYtyNPkh1p0skKs98xBA9Pnav5x0LRRf1M16cZPBeld5OXVQ2Aw==",
+  "success": true,
+  "projectFilePath": "/Users/Levent/Desktop/aw-3-cigdemcakir/VbApi/Vb.Base/Vb.Base.csproj",
+  "expectedPackageFiles": [
+    "/Users/Levent/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
