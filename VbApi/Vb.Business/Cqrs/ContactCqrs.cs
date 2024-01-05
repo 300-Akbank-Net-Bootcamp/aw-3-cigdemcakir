@@ -14,4 +14,4 @@ public record GetAllContactQuery() : IRequest<ApiResponse<List<ContactResponse>>
 
 public record GetContactByIdQuery(int Id) : IRequest<ApiResponse<ContactResponse>>;
 
-public record GetContactByParameterQuery(string FirstName,string LastName,string IdentiyNumber) : IRequest<ApiResponse<List<ContactResponse>>>;
+public record GetContactByParameterQuery(string ContactType, string Information) : IRequest<ApiResponse<List<ContactResponse>>>;

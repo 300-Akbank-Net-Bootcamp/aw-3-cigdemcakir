@@ -28,14 +28,22 @@ public class CustomerCommandHandler :
     {
         var checkIdentity = await dbContext.Set<Customer>().Where(x => x.IdentityNumber == request.Model.IdentityNumber)
             .FirstOrDefaultAsync(cancellationToken);
+        
         if (checkIdentity != null)
         {
             return new ApiResponse<CustomerResponse>($"{request.Model.IdentityNumber} is used by another customer.");
         }
         
         var entity = mapper.Map<CustomerRequest, Customer>(request.Model);
-        entity.CustomerNumber = new Random().Next(1000000, 9999999);
         
+        int customerNumber;
+        bool isNumberExists;
+        do
+        {
+            customerNumber = new Random().Next(1000000, 9999999);
+            isNumberExists = await dbContext.Customers.AnyAsync(c => c.CustomerNumber == customerNumber, cancellationToken);
+        } while (isNumberExists);
+
         var entityResult = await dbContext.AddAsync(entity, cancellationToken);
         await dbContext.SaveChangesAsync(cancellationToken);
 

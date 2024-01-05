@@ -15,4 +15,4 @@ public record GetAllAddressQuery() : IRequest<ApiResponse<List<AddressResponse>>
 
 public record GetAddressByIdQuery(int Id) : IRequest<ApiResponse<AddressResponse>>;
 
-public record GetAddressByParameterQuery(string FirstName,string LastName,string IdentiyNumber) : IRequest<ApiResponse<List<AddressResponse>>>;
+public record GetAddressByParameterQuery(string Country, string City, string County, string PostalCode) : IRequest<ApiResponse<List<AddressResponse>>>;

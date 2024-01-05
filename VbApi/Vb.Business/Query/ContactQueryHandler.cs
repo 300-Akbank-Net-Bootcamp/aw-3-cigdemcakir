@@ -47,18 +47,18 @@ public class ContactQueryHandler:
         return new ApiResponse<ContactResponse>(mapped);
     }
 
-    public async Task<ApiResponse<List<ContactResponse>>> Handle(GetContactByParameterQuery request,
-        CancellationToken cancellationToken)
+    public async Task<ApiResponse<List<ContactResponse>>> Handle(GetContactByParameterQuery request, CancellationToken cancellationToken)
     {
-        var list =  await dbContext.Set<Contact>()
-            .Include(x => x.Customer)
-            /*.Where(x =>
-            x.FirstName.ToUpper().Contains(request.FirstName.ToUpper()) ||
-            x.LastName.ToUpper().Contains(request.LastName.ToUpper()) ||
-            x.IdentityNumber.ToUpper().Contains(request.IdentiyNumber.ToUpper())
-        )*/.ToListAsync(cancellationToken);
-        
-        var mappedList = mapper.Map<List<Contact>, List<ContactResponse>>(list);
-        return new ApiResponse<List<ContactResponse>>(mappedList);
+        var query = dbContext.Contacts.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(request.ContactType))
+            query = query.Where(c => c.ContactType.Contains(request.ContactType));
+
+        if (!string.IsNullOrWhiteSpace(request.Information))
+            query = query.Where(c => c.Information.Contains(request.Information));
+
+        var contacts = await query.ToListAsync(cancellationToken);
+        var response = mapper.Map<List<ContactResponse>>(contacts);
+        return new ApiResponse<List<ContactResponse>>(response);
     }
 }

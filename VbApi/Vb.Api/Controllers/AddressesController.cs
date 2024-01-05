@@ -32,4 +32,35 @@ public class AddressesController : ControllerBase
         return result;
     }
     
+    [HttpPost]
+    public async Task<ApiResponse<AddressResponse>> Post([FromBody] AddressRequest address)
+    {
+        var operation = new CreateAddressCommand(address);
+        var result = await mediator.Send(operation);
+        return result;
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ApiResponse> Put(int id, [FromBody] AddressRequest address)
+    {
+        var operation = new UpdateAddressCommand(id,address);
+        var result = await mediator.Send(operation);
+        return result;
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ApiResponse> Delete(int id)
+    {
+        var operation = new DeleteAddressCommand(id);
+        var result = await mediator.Send(operation);
+        return result;
+    }
+    
+    [HttpGet("filter")]
+    public async Task<ActionResult<ApiResponse<List<AddressResponse>>>> GetAddressesByParameter([FromQuery] GetAddressByParameterQuery query)
+    {
+        var response = await mediator.Send(query);
+        return Ok(response);
+    }
+    
 }

@@ -55,4 +55,11 @@ public class EftTransactionsController : ControllerBase
         var result = await mediator.Send(operation);
         return result;
     }
+    
+    [HttpGet("filter")]
+    public async Task<ActionResult<ApiResponse<List<EftTransactionResponse>>>> GetCustomersByParameter([FromQuery] GetEftTransactionByParameterQuery query)
+    {
+        var response = await mediator.Send(query);
+        return Ok(response);
+    }
 }

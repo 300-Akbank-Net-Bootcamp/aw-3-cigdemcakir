@@ -55,4 +55,11 @@ public class AccountTransactionsController : ControllerBase
         var result = await mediator.Send(operation);
         return result;
     }
+    
+    [HttpGet("filter")]
+    public async Task<ActionResult<ApiResponse<List<AccountTransactionResponse>>>> GetAccountTransactionsByParameter([FromQuery] GetAccountTransactionByParameterQuery query)
+    {
+        var response = await mediator.Send(query);
+        return Ok(response);
+    }
 }

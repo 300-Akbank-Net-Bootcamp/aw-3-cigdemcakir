@@ -52,20 +52,21 @@ public class AccountQueryHandler:
         return new ApiResponse<AccountResponse>(mapped);
     }
 
-    public async Task<ApiResponse<List<AccountResponse>>> Handle(GetAccountByParameterQuery request,
-        CancellationToken cancellationToken)
+    public async Task<ApiResponse<List<AccountResponse>>> Handle(GetAccountByParameterQuery request, CancellationToken cancellationToken)
     {
-        var list =  await dbContext.Set<Account>()
-            .Include(x => x.AccountTransactions)
-            .Include(x => x.EftTransactions)
-            .Include(x => x.Customer)
-            // .Where(x =>
-            // x.FirstName.ToUpper().Contains(request.FirstName.ToUpper()) ||
-            // x.LastName.ToUpper().Contains(request.LastName.ToUpper()) ||
-            // x.IdentityNumber.ToUpper().Contains(request.IdentiyNumber.ToUpper()))
-            .ToListAsync(cancellationToken);
-        
-        var mappedList = mapper.Map<List<Account>, List<AccountResponse>>(list);
-        return new ApiResponse<List<AccountResponse>>(mappedList);
+        var query = dbContext.Accounts.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(request.IBAN))
+            query = query.Where(a => a.IBAN.Contains(request.IBAN));
+
+        if (!string.IsNullOrWhiteSpace(request.CurrencyType))
+            query = query.Where(a => a.CurrencyType == request.CurrencyType);
+
+        if (!string.IsNullOrWhiteSpace(request.Name))
+            query = query.Where(a => a.Name.Contains(request.Name));
+
+        var accounts = await query.ToListAsync(cancellationToken);
+        var response = mapper.Map<List<AccountResponse>>(accounts);
+        return new ApiResponse<List<AccountResponse>>(response);
     }
 }

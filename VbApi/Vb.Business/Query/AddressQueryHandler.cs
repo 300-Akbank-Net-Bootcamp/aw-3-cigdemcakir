@@ -47,4 +47,25 @@ public class AddressQueryHandler :
         var mapped = mapper.Map<Address, AddressResponse>(entity);
         return new ApiResponse<AddressResponse>(mapped);
     }
+    
+    public async Task<ApiResponse<List<AddressResponse>>> Handle(GetAddressByParameterQuery request, CancellationToken cancellationToken)
+    {
+        var query = dbContext.Addresses.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(request.Country))
+            query = query.Where(a => a.Country.Contains(request.Country));
+
+        if (!string.IsNullOrWhiteSpace(request.City))
+            query = query.Where(a => a.City.Contains(request.City));
+
+        if (!string.IsNullOrWhiteSpace(request.County))
+            query = query.Where(a => a.County.Contains(request.County));
+
+        if (!string.IsNullOrWhiteSpace(request.PostalCode))
+            query = query.Where(a => a.PostalCode == request.PostalCode);
+
+        var addresses = await query.ToListAsync(cancellationToken);
+        var response = mapper.Map<List<AddressResponse>>(addresses);
+        return new ApiResponse<List<AddressResponse>>(response);
+    }
 }

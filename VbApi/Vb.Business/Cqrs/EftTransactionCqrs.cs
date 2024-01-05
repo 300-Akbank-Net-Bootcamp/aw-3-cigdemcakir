@@ -14,4 +14,4 @@ public record GetAllEftTransactionQuery() : IRequest<ApiResponse<List<EftTransac
 
 public record GetEftTransactionByIdQuery(int Id) : IRequest<ApiResponse<EftTransactionResponse>>;
 
-public record GetEftTransactionByParameterQuery(string FirstName,string LastName,string IdentiyNumber) : IRequest<ApiResponse<List<EftTransactionResponse>>>;
+public record GetEftTransactionByParameterQuery(string ReferenceNumber, string Description, string SenderAccount, string SenderIban, string SenderName) : IRequest<ApiResponse<List<EftTransactionResponse>>>;

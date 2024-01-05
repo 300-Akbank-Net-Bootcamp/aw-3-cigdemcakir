@@ -14,4 +14,4 @@ public record GetAllAccountQuery() : IRequest<ApiResponse<List<AccountResponse>>
 
 public record GetAccountByIdQuery(int Id) : IRequest<ApiResponse<AccountResponse>>;
 
-public record GetAccountByParameterQuery(string FirstName,string LastName,string IdentiyNumber) : IRequest<ApiResponse<List<AccountResponse>>>;
+public record GetAccountByParameterQuery(string IBAN, string CurrencyType, string Name) : IRequest<ApiResponse<List<AccountResponse>>>;

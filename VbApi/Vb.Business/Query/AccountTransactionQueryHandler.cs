@@ -47,18 +47,22 @@ public class AccountTransactionQueryHandler:
         return new ApiResponse<AccountTransactionResponse>(mapped);
     }
 
-    public async Task<ApiResponse<List<AccountTransactionResponse>>> Handle(GetAccountTransactionByParameterQuery request,
-        CancellationToken cancellationToken)
+    public async Task<ApiResponse<List<AccountTransactionResponse>>> Handle(GetAccountTransactionByParameterQuery request, CancellationToken cancellationToken)
     {
-        var list =  await dbContext.Set<AccountTransaction>()
-            .Include(x=>x.Account)
-            /*.Where(x =>
-            x.FirstName.ToUpper().Contains(request.FirstName.ToUpper()) ||
-            x.LastName.ToUpper().Contains(request.LastName.ToUpper()) ||
-            x.IdentityNumber.ToUpper().Contains(request.IdentiyNumber.ToUpper())
-        )*/.ToListAsync(cancellationToken);
-        
-        var mappedList = mapper.Map<List<AccountTransaction>, List<AccountTransactionResponse>>(list);
-        return new ApiResponse<List<AccountTransactionResponse>>(mappedList);
+        var query = dbContext.AccountTransactions.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(request.ReferenceNumber))
+            query = query.Where(a => a.ReferenceNumber.Contains(request.ReferenceNumber));
+
+        if (!string.IsNullOrWhiteSpace(request.Description))
+            query = query.Where(a => a.Description.Contains(request.Description));
+
+        if (!string.IsNullOrWhiteSpace(request.TransferType))
+            query = query.Where(a => a.TransferType == request.TransferType);
+
+        var transactions = await query.ToListAsync(cancellationToken);
+        var response = mapper.Map<List<AccountTransactionResponse>>(transactions);
+        return new ApiResponse<List<AccountTransactionResponse>>(response);
+
     }
 }

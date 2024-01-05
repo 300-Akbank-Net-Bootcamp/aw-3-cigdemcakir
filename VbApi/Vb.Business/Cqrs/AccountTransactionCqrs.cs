@@ -14,4 +14,4 @@ public record GetAllAccountTransactionQuery() : IRequest<ApiResponse<List<Accoun
 
 public record GetAccountTransactionByIdQuery(int Id) : IRequest<ApiResponse<AccountTransactionResponse>>;
 
-public record GetAccountTransactionByParameterQuery(string FirstName,string LastName,string IdentiyNumber) : IRequest<ApiResponse<List<AccountTransactionResponse>>>;
+public record GetAccountTransactionByParameterQuery(string ReferenceNumber, string Description, string TransferType) : IRequest<ApiResponse<List<AccountTransactionResponse>>>;
